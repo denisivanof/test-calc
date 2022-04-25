@@ -1,25 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {FC} from 'react';
+import Display from "./components/Display";
+import Keyboard from "./components/Keyboard";
+import Symbols from "./components/Symbols";
+import Equals from "./components/Equals";
+import styled from "styled-components";
+import InfoDropPlace from "./components/InfoDropPlace";
 
-function App() {
+const WrapperApp = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const DropPlace = styled.div`
+  width: 243px;
+  height: 480px;
+  border: 2px dashed #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const App:FC = () => {
+    const onDragOver = (e: any) => {
+        e.preventDefault()
+        console.log(e)
+    }
+    const onDrop = (e: any) => {
+        e.preventDefault()
+        console.log(e)
+    }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <WrapperApp>
+              <div>
+                  <Display/>
+                  <Symbols />
+                  <Keyboard />
+                  <Equals />
+              </div>
+              <DropPlace onDragOver={onDragOver} onDrop={onDrop}>
+                  <InfoDropPlace/>
+              </DropPlace>
+          </WrapperApp>
   );
 }
 
