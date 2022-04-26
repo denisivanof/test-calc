@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
-import {WrapperKeyboard} from "./Keyboard";
+import {WrapperBox} from "./Keyboard";
+import {IPropsOnDrop} from "../type/type";
 
 const Show = styled.div`
   display: flex;
@@ -17,15 +18,16 @@ const Show = styled.div`
   line-height: 44px;
   color: #111827;
 `
-const WrapperDisplay = styled(WrapperKeyboard)`
+const WrapperDisplay = styled(WrapperBox)<IPropsOnDrop>`
   height: 60px;
+  opacity: ${props=>props.opacity};
+  box-shadow: ${props=> props.boxShadow};
+  display: ${props=>props.display};
+  margin-bottom: ${props=>props.marginBottom};
 `
-interface IDisplay {
-}
-
-const Display:FC<IDisplay> = () => {
+const Display:FC<IPropsOnDrop> = (props) => {
     return (
-        <WrapperDisplay draggable>
+        <WrapperDisplay {...props}>
             <Show>0</Show>
         </WrapperDisplay>
     );

@@ -2,6 +2,11 @@ import React, {FC} from 'react';
 import styled from "styled-components";
 import g from "../Group.png";
 
+
+const WrapperInfoDropPlace = styled.div<{display: string}>`
+  display: ${props=> props.display};
+`
+
 const InfoDropPlaceImg = styled.div`
   display: flex;
   justify-content: center;
@@ -27,13 +32,19 @@ const InfoDropPlaceText = styled.div`
   text-align: center;
   color: #6B7280;
 `
-const InfoDropPlace:FC = () => {
+
+interface IInfoDropPlace {
+    IsInfoDropPlace: boolean
+}
+const InfoDropPlace:FC<IInfoDropPlace> = ({IsInfoDropPlace}) => {
     return (
-        <div>
-            <InfoDropPlaceImg><img src={g}/></InfoDropPlaceImg>
-            <InfoDropPlaceTitle>Перетащите сюда</InfoDropPlaceTitle>
-            <InfoDropPlaceText>любой элемент из левой панели</InfoDropPlaceText>
-        </div>
+        <WrapperInfoDropPlace display={IsInfoDropPlace ? 'flex': 'none'}>
+            <div>
+                <InfoDropPlaceImg><img src={g}/></InfoDropPlaceImg>
+                <InfoDropPlaceTitle>Перетащите сюда</InfoDropPlaceTitle>
+                <InfoDropPlaceText>любой элемент из левой панели</InfoDropPlaceText>
+            </div>
+        </WrapperInfoDropPlace>
     );
 };
 
